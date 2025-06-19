@@ -1,47 +1,40 @@
 package com.example.pakhi
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.pakhi.ui.theme.PakhiTheme
+import android.os.Environment
+import android.os.StatFs
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
 
-class MainActivity : ComponentActivity() {
+
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            PakhiTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main) // Ensure this layout has a TextView with id: storageText
+
+        val storageButton: Button = findViewById(R.id.button)
+        val storageText: TextView = findViewById(R.id.storageText)
+
+        storageText.text = " "
+
+        // 2. StatFs for internal app data (optional alternative)
+        storageButton.setOnClickListener {
+            val statInt = StatFs(Environment.getDataDirectory().path)
+            val totalInt = statInt.blockCountLong * statInt.blockSizeLong
+            val freeInt = statInt.availableBlocksLong * statInt.blockSizeLong
+            val usedInt = totalInt - freeInt
+
+            // Convert bytes to MB
+            fun toMB(bytes: Long): Long = bytes / (1024 * 1024)
+
+            storageText.text = """
+
+            Internal data:
+              Used: ${toMB(usedInt)} MB
+              Free: ${toMB(freeInt)} MB
+              Total: ${toMB(totalInt)} MB
+        """.trimIndent()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PakhiTheme {
-        Greeting("Android")
     }
 }
