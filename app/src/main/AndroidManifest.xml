@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Pakhi"
         tools:targetApi="31">
         <activity
+            android:name=".storageUpdate"
+            android:exported="false" />
+        <activity
+            android:name=".CountDownActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

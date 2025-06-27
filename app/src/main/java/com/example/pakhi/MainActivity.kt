@@ -1,8 +1,7 @@
 package com.example.pakhi
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
-import android.os.StatFs
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
@@ -13,7 +12,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val storageText: TextView = findViewById(R.id.storageText)
-        val storageButton: Button = findViewById(R.id.button)
+        val storageButton: Button = findViewById(R.id.storagebutton)
+        val countdownButton: Button = findViewById(R.id.countdownButton)
+        countdownButton.setOnClickListener {
+            val intent = Intent(this, CountDownActivity::class.java)
+            startActivity(intent)
+        }
         getStorage(storageText, storageButton)//Call the function in StorageUtils.kt
     }
 }
