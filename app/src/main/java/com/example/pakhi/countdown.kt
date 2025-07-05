@@ -10,15 +10,17 @@ class Countdown(
 ) {
     private var timer: CountDownTimer? = null
 
-    fun start() {
+    fun start(update : Long) {
 
-        timer = object : CountDownTimer(totalTimeMs, intervalMs) {
+        timer = object : CountDownTimer((update * totalTimeMs)/100, intervalMs) {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsUntilFinished = millisUntilFinished / 1000
                 val minutes = secondsUntilFinished / 60
                 val seconds = secondsUntilFinished % 60
+                val hours = minutes/60
+                val minutesLeft = minutes%60
 
-                countdownText.text = "$minutes: $seconds"
+                countdownText.text = "$hours: $minutesLeft: $seconds"
             }
 
             override fun onFinish() {

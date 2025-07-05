@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".LoginActivity">
+
+    <!-- Login Title -->
+    <TextView
+        android:id="@+id/logInPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN PAGE"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="48dp"/>
+
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/enterEmailAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Enter your email address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logInPage"
+        android:layout_marginHorizontal="24dp"/>
+
+    <!-- Password Field -->
+    <EditText
+        android:id="@+id/enterPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enterEmailAddress"
+        android:layout_marginHorizontal="24dp"/>
+
+    <!-- Sign In Button -->
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Sign In"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enterPassword"
+        android:layout_marginHorizontal="64dp"
+        android:paddingVertical="12dp"/>
+
+    <!-- Switch to Sign Up -->
+    <TextView
+        android:id="@+id/switchToSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Don't have an account yet? Sign Up!"
+        android:clickable="true"
+        android:focusable="true"
+        android:textAlignment="center"
+        android:textColor="#2D40B3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signIn"
+        android:layout_marginBottom="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21"
 }
 
 android {
@@ -16,6 +17,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true // Needed for Compose
+        }
     }
 
     buildTypes {
@@ -35,24 +39,46 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        viewBinding = true
         compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3" // Match your Compose version
     }
 }
 
 dependencies {
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation(libs.firebase.auth)
+    implementation("com.google.firebase:firebase-auth-ktx")
 
+    // AndroidX
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.activity)
+
+    // Lifecycle
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.constraintlayout)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
+
+    // Credentials
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

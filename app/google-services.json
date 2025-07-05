@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "92711503421",
+    "project_id": "nullandvoid-280ed",
+    "storage_bucket": "nullandvoid-280ed.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92711503421:android:416a5903e66bfca35b8c54",
+        "android_client_info": {
+          "package_name": "com.example.pakhi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA74AogQrQiR8qZrOpriDo-iUI7SVO1YRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
