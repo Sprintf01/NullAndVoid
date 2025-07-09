@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 
 
-fun getStorage(storageText: TextView, storageButton: Button) : Double{ //Function to display storage information of the android device
+fun getStorage(storageText: TextView) : Double{ //Function to display storage information of the android device
 
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)

@@ -1,68 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Storage Info Button (Topmost) -->
-    <Button
-        android:id="@+id/storagebutton"
-        android:layout_width="180dp"
-        android:layout_height="50dp"
-        android:text="Storage Info"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
 
-    <!-- Storage Info TextView (Below Storage Button) -->
     <TextView
         android:id="@+id/storageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:text="Storage Info"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/storagebutton"
+        tools:layout_editor_absoluteX="140dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        />
 
-    <!-- Clean Button (Below Storage TextView) -->
     <Button
         android:id="@+id/countdownButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:text="CLEAN"
-        app:layout_constraintTop_toBottomOf="@id/storageText"
+        app:layout_constraintTop_toBottomOf="@+id/storageText"
+        tools:layout_editor_absoluteX="161dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Time Remaining TextView (Below Clean Button) -->
     <TextView
         android:id="@+id/remaining_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="231dp"
+        android:layout_marginEnd="123dp"
         android:text="time remaining:"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/countdownButton"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countdownButton" />
 
-    <!-- Countdown TextView (Bottommost) -->
     <TextView
         android:id="@+id/countdownText"
         android:layout_width="285dp"
         android:layout_height="112dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="272dp"
         android:background="@color/cardview_dark_background"
         android:text="countdown"
         android:textAlignment="center"
@@ -71,6 +61,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/remaining_time" />
+        app:layout_constraintTop_toBottomOf="@+id/remaining_time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
