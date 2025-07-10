@@ -1,8 +1,12 @@
 package com.example.pakhi
 
 import android.content.Intent
+import android.graphics.ImageDecoder
+import android.graphics.drawable.AnimatedImageDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,5 +29,18 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        Thread{
+            val source=ImageDecoder.createSource(
+                resources,R.drawable.dustor_gif
+            )
+            val drawable : Drawable = ImageDecoder.decodeDrawable(source)
+
+            val imageView: ImageView = findViewById<ImageView>(R.id.dustor_gif)
+            imageView.post{
+                imageView.setImageDrawable(drawable)
+                (drawable as? AnimatedImageDrawable)?.start()
+            }
+        }.start()
     }
 }

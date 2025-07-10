@@ -8,21 +8,22 @@
     android:padding="16dp"
     tools:context=".LoginActivity">
 
-    <!-- Login Title -->
+
     <TextView
         android:id="@+id/logInPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGIN PAGE"
-        android:textColor="@color/black"
+        android:text="LOGIN"
+        android:textColor="@color/navy_blue"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp"/>
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/pressstart2p"/>
 
-    <!-- Email Field -->
+
     <EditText
         android:id="@+id/enterEmailAddress"
         android:layout_width="0dp"
@@ -36,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/logInPage"
         android:layout_marginHorizontal="24dp"/>
 
-    <!-- Password Field -->
+
     <EditText
         android:id="@+id/enterPassword"
         android:layout_width="0dp"
@@ -50,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@id/enterEmailAddress"
         android:layout_marginHorizontal="24dp"/>
 
-    <!-- Sign In Button -->
+
     <Button
         android:id="@+id/signIn"
         android:layout_width="0dp"
@@ -61,9 +62,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/enterPassword"
         android:layout_marginHorizontal="64dp"
-        android:paddingVertical="12dp"/>
+        android:paddingVertical="12dp"
+        android:backgroundTint="@color/cream"
+        android:textColor="@color/navy_blue"/>
 
-    <!-- Switch to Sign Up -->
+
     <TextView
         android:id="@+id/switchToSignUp"
         android:layout_width="wrap_content"
@@ -73,7 +76,7 @@
         android:clickable="true"
         android:focusable="true"
         android:textAlignment="center"
-        android:textColor="#2D40B3"
+        android:textColor="@color/navy_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
