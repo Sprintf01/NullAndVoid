@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.pakhi.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
+var username: String? = null
+
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -51,6 +53,7 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
                 }
             }
+            username = binding.editUsername.text.toString()
         }
         }
     }

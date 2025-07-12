@@ -111,6 +111,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import androidx.appcompat.app.AppCompatActivity
@@ -125,6 +126,8 @@ class MainActivity : AppCompatActivity() {
     private var countdownService: CountdownService? = null
     var differenceMB: Long = 0
     private var newUsed: Double = 0.0
+    private var isServiceBound = false
+
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -132,11 +135,21 @@ class MainActivity : AppCompatActivity() {
             countdownService = binder.getService().apply {
                 countdownLiveData.observe(this@MainActivity) { countdownText ->
                     binding.countdownText.text = countdownText
+                    if(countdownText == "Time's Up!")
+                    {
+                        updateStorage()
+                    }
+                }
+                if(isRunning)
+                {
+                    binding.countdownText.text = "Countdown continuing..."
                 }
             }
+            isServiceBound = true
         }
         override fun onServiceDisconnected(name: ComponentName?) {
             countdownService = null
+            isServiceBound = false
         }
     }
 
@@ -145,7 +158,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Firebase Auth
+        val serviceIntent = Intent(this, CountdownService::class.java)
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            startForegroundService(serviceIntent)
+        }
+        else{
+            startService(serviceIntent)
+        }
+
+        bindService(Intent(this, CountdownService::class.java), serviceConnection, Context.BIND_AUTO_CREATE)
+
         auth = Firebase.auth
         if (auth.currentUser == null) {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -153,21 +176,12 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Service Binding
-        bindService(
-            Intent(this, CountdownService::class.java),
-            serviceConnection,
-            Context.BIND_AUTO_CREATE
-        )
-
-        // Storage Check
         val sharedPref = getSharedPreferences("old storage", Context.MODE_PRIVATE)
         val oldUsed = sharedPref.getFloat("old storage", 0.0f).toDouble()
         newUsed = getStorage(binding.storageText)
         differenceMB = ((oldUsed - newUsed) * 1024).toLong()
         binding.storageText.text = "Storage: ${"%.3f".format(oldUsed)} GB"
 
-        // Button Click
         binding.countdownButton.setOnClickListener {
             if (differenceMB > 0) {
                 Countdown{countdownText ->
@@ -176,11 +190,14 @@ class MainActivity : AppCompatActivity() {
                     {
                         updateStorage()
                     }
+                    countdownService?.countdownLiveData?.postValue(countdownText)
                 }.start(differenceMB)
             } else {
                 updateStorage()
             }
         }
+
+        binding.username.text = username
     }
 
     private fun updateStorage() {
@@ -194,6 +211,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        unbindService(serviceConnection)
+        if(isServiceBound) unbindService(serviceConnection)
     }
 }
