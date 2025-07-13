@@ -196,7 +196,6 @@ class MainActivity : AppCompatActivity() {
                 updateStorage()
             }
         }
-
         binding.username.text = username
     }
 
@@ -211,6 +210,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        if(isServiceBound) unbindService(serviceConnection)
+        if(isServiceBound)
+        {
+            unbindService(serviceConnection)
+        }
     }
 }

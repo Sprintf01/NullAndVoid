@@ -44,7 +44,7 @@ class SignUpActivity : AppCompatActivity() {
                         }
                         else
                         {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Your account already exists. Try signing in.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

@@ -45,6 +45,7 @@ class CountdownService: Service()
     {
         val notif = NotificationCompat.Builder(this, "countdown_channel")
             .setContentTitle("Countdown running...")
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setOngoing(true)
             .build()
 
